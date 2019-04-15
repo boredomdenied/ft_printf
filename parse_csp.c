@@ -6,7 +6,7 @@
 /*   By: bchapman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 15:07:49 by bchapman          #+#    #+#             */
-/*   Updated: 2019/04/13 01:40:58 by bchapman         ###   ########.fr       */
+/*   Updated: 2019/04/14 10:18:11 by bchapman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		parse_char(int length, va_list ap)
 
 int		parse_string(int length, va_list ap)
 {
-	length = ft_putstr(va_arg(ap, char*));
+	length = ft_putstr(va_arg(ap, char*), 0);
 	return (length);
 }
 

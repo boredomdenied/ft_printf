@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bchapman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/12 12:09:22 by bchapman          #+#    #+#             */
-/*   Updated: 2019/04/14 13:35:07 by bchapman         ###   ########.fr       */
+/*   Created: 2019/02/13 05:46:24 by bchapman          #+#    #+#             */
+/*   Updated: 2019/04/14 13:02:47 by bchapman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <unistd.h>
+#include "printf.h"
 
-int		ft_putstr(char *str, t_line *line)
+int		ft_isdigit(int c)
 {
-	int			i;
-	const char	*s;
-
-	s = (const char*)str;
-	i = 0;
-	if (s != NULL)
-	{
-		if (line->plus == 1)
-		{
-			write(1, "+", 1);
-			i++;
-		}
-		i = ft_strlen(str);
-		write(1, str, i);
-	}
-	if (line->plus == 1)
-		i += 2;
-	return (i);
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }

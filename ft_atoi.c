@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bchapman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/12 12:09:22 by bchapman          #+#    #+#             */
-/*   Updated: 2019/04/14 13:35:07 by bchapman         ###   ########.fr       */
+/*   Created: 2019/01/14 14:56:30 by bchapman          #+#    #+#             */
+/*   Updated: 2019/04/14 13:03:38 by bchapman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <unistd.h>
 
-int		ft_putstr(char *str, t_line *line)
+int		ft_atoi(const char *str)
 {
-	int			i;
-	const char	*s;
+	int		number;
+	int		negative;
 
-	s = (const char*)str;
-	i = 0;
-	if (s != NULL)
+	number = 0;
+	while (*str == '\r' || *str == '\f' || *str == '\n' || *str == '\v' ||
+			*str == ' ' || *str == '\t')
+		str++;
+	if (*str == '-')
+		negative = -1;
+	if (*str == '+' || *str == '-')
+		str++;
+	while (ft_isdigit(*str) == 1)
 	{
-		if (line->plus == 1)
-		{
-			write(1, "+", 1);
-			i++;
-		}
-		i = ft_strlen(str);
-		write(1, str, i);
+		number *= 10;
+		number += (*str - '0');
+		str++;
 	}
-	if (line->plus == 1)
-		i += 2;
-	return (i);
+	if (negative < 0)
+		return (number *= negative);
+	return (number);
 }

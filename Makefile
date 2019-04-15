@@ -6,7 +6,7 @@
 #    By: jrameau <jrameau@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/21 14:58:27 by jrameau           #+#    #+#              #
-#    Updated: 2019/04/13 01:24:32 by bchapman         ###   ########.fr        #
+#    Updated: 2019/04/14 13:03:05 by bchapman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ FILES		= ft_bzero.c \
 				ft_itoa_base.c \
 				ft_itoa_base_lower.c \
 				ft_itoa_unsigned.c \
+				ft_atoi.c \
 				ft_memalloc.c \
 				ft_print_pointer_memory.c \
 				ft_printf.c \
@@ -31,7 +32,8 @@ FILES		= ft_bzero.c \
 				ft_strsub.c \
 				parse_csp.c \
 				parse_dioux.c \
-				parse_float.c
+				parse_float.c \
+				ft_isdigit.c
 
 OBJ=$(FILES:.c=.o)
 
