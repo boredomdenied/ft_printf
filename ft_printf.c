@@ -20,29 +20,29 @@ void	parse_flags(t_line *line, const char *p)
 	line->pos++;
 	while (p[line->pos] == '+' || p[line->pos] == '-' || p[line->pos] == '0' || p[line->pos] == '#' || p[line->pos] == ' ')
 	{
-		if (p == '+')
+		if (p[line->pos] == '+')
 		{
 			line->plus = 1;
 		}
-		else if (*p == '-')
+		else if (p[line->pos] == '-')
 		{
 			line->minus = 1;
 		}
-		else if (*p == '0')
+		else if (p[line->pos] == '0')
 		{
 			line->zero = 1;
 		}
-		else if (*p == '#')
+		else if (p[line->pos] == '#')
 		{
 			line->pound = 1;
 		}
-		else if (*p == ' ')
+		else if (p[line->pos] == ' ')
 		{
 			line->space = 1;
 		}
-	//	p++;
+	//	line->pos++;
 	}
-//	p++;
+//	line->pos++;
 }
 
 void	parse_width(t_line *line, const char *p)
