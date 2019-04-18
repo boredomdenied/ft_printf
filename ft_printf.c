@@ -66,24 +66,25 @@ void	parse_width(t_line *line, const char *p)
 
 void	parse_type(t_line *line, const char *p)
 {
-	p++;
-	if (*p == 'd' || *p == 'i' || *p == 'o'
-			|| *p == 'u' || *p == 'x' || *p == 'X')
+	line->pos++;
+	if (p[line->pos] == 'd' || p[line->pos] == 'i' || p[line->pos] == 'o'
+			|| p[line->pos] == 'u' || p[line->pos] == 'x' || p[line->pos] == 'X')
 		parse_dioux(line, p);
-	else if (*p == 'c' || *p == 's' || *p == 'p')
+	else if (p[line->pos] == 'c' || p[line->pos] == 's' || p[line->pos] == 'p')
 		line->length += parse_csp(line->ap, p);
-	else if (*p == 'f')
+	else if (p[line->pos] == 'f')
 		line->length += parse_float(line->ap);
-	else if (*p == '%')
+	else if (p[line->pos] == '%')
 	{
 		ft_putchar('%');
 		line->length++;
-		p++;
+		line->pos++;
 	}
 }
 
 void	init_line(t_line *line)
 {
+	line->pos = 0;
 	line->plus = 0;
 	line->minus = 0;
 	line->pound = 0;
@@ -97,29 +98,27 @@ void	init_line(t_line *line)
 int		ft_printf(const char *str, ...)
 {
 	int			i;
-	int			j;
 	t_line		*line;
 
-	j = 0;
 	line = (t_line*)ft_memalloc(sizeof(t_line));
 	init_line(line);
 	va_start(line->ap, str);
-	while (str[j] != '\0')
+	while (str[line->pos] != '\0')
 	{
-		if (str[j] != '%')
+		if (str[line->pos] != '%')
 		{
 			write(1, str, 1);
 			line->length++;
-			j++;
+			line->pos++;
 		}
 		else
 		{
-			parse_flags(line, &str[j]);
+			parse_flags(line, &str[line->pos]);
 //			parse_width(line, p);
 //			parse_precision(line, p);
 //			parse_length(line, p);
-			parse_type(line, &str[j]);
-			j++;
+			parse_type(line, &str[line->pos]);
+			line->pos++;
 		}
 	}
 	i = line->length;
