@@ -6,7 +6,7 @@
 /*   By: bchapman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 15:18:19 by bchapman          #+#    #+#             */
-/*   Updated: 2019/04/14 13:32:38 by bchapman         ###   ########.fr       */
+/*   Updated: 2019/04/18 15:50:58 by bchapman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 typedef struct		s_line
 {
+	int				pos;
 	int				plus;
 	int				minus;
 	int				pound;
