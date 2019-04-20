@@ -6,7 +6,7 @@
 /*   By: bchapman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 15:18:19 by bchapman          #+#    #+#             */
-/*   Updated: 2019/04/18 15:50:58 by bchapman         ###   ########.fr       */
+/*   Updated: 2019/04/20 12:29:56 by bchapman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ typedef struct		s_line
 	int				zero;
 	int				space;
 	int				width;
-	int				length;
 	int				width_digits;
+	int				length;
+	int				precision;
+	int				precision_digits;
+
 	va_list			ap;
 }					t_line;
 
@@ -34,6 +37,7 @@ int					parse_csp(va_list ap, const char *p);
 void				parse_dioux(t_line *line, const char *p);
 int					parse_float(va_list ap);
 int					ft_putstr(char *str, t_line *line);
+int					pf_parse_int(char *str, t_line *line);
 int					ft_putchar(char c);
 char				*ft_itoa(int n);
 char				*ft_itoa_unsigned(unsigned int n);

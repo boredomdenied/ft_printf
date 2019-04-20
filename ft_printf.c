@@ -6,7 +6,7 @@
 /*   By: bchapman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 14:06:56 by bchapman          #+#    #+#             */
-/*   Updated: 2019/04/18 15:53:22 by bchapman         ###   ########.fr       */
+/*   Updated: 2019/04/20 12:32:16 by bchapman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 void	parse_flags(t_line *line, const char *p)
 
 {
-	line->pos++;
 	while (p[line->pos] == '+' || p[line->pos] == '-' || p[line->pos] == '0' || p[line->pos] == '#' || p[line->pos] == ' ')
 	{
 		if (p[line->pos] == '+')
@@ -40,33 +39,44 @@ void	parse_flags(t_line *line, const char *p)
 		{
 			line->space = 1;
 		}
-	//	line->pos++;
+		line->pos++;
 	}
-//	line->pos++;
 }
 
 void	parse_width(t_line *line, const char *p)
 {
-	int i;
-	const char *q;
 	char *temp;
 
-	i = 0;
-	q = p;
-	while (*q >= '0' && *q <= '9')
+	while (p[line->pos] >= '0' && p[line->pos] <= '9')
 	{
-		q++;
-		i++;
+		line->pos++;
+		line->width_digits++;
 	}
-	q = p;
-	temp = ft_strsub(q, 0, i);
+	line->pos -= line->width_digits;
+	temp = ft_strsub(p, line->pos, line->width_digits);
 		line->width = ft_atoi(temp);
-		line->width_digits = i;
+	line->pos += line->width_digits;
+}
+
+void	parse_precision(t_line *line, const char *p)
+{
+	char *temp;
+
+	if (p[line->pos] == '.')
+		line->pos++;
+	while (p[line->pos] >= '0' && p[line->pos] <= '9')
+	{
+		line->pos++;
+		line->precision_digits++;
+	}
+	line->pos -= line->precision_digits;
+	temp = ft_strsub(p, line->pos, line->precision_digits);
+		line->precision = ft_atoi(temp);
+	line->pos += line->precision_digits;
 }
 
 void	parse_type(t_line *line, const char *p)
 {
-	line->pos++;
 	if (p[line->pos] == 'd' || p[line->pos] == 'i' || p[line->pos] == 'o'
 			|| p[line->pos] == 'u' || p[line->pos] == 'x' || p[line->pos] == 'X')
 		parse_dioux(line, p);
@@ -78,7 +88,7 @@ void	parse_type(t_line *line, const char *p)
 	{
 		ft_putchar('%');
 		line->length++;
-		line->pos++;
+	//	line->pos++;
 	}
 }
 
@@ -93,6 +103,7 @@ void	init_line(t_line *line)
 	line->width = 0;
 	line->length = 0;
 	line->width_digits = 0;
+	line->precision = 0;
 }
 
 int		ft_printf(const char *str, ...)
@@ -107,17 +118,18 @@ int		ft_printf(const char *str, ...)
 	{
 		if (str[line->pos] != '%')
 		{
-			write(1, str, 1);
+			write(1, &str[line->pos], 1);
 			line->length++;
 			line->pos++;
 		}
 		else
 		{
-			parse_flags(line, &str[line->pos]);
-//			parse_width(line, p);
-//			parse_precision(line, p);
+			line->pos++;
+			parse_flags(line, str);
+			parse_width(line, str);
+			parse_precision(line, str);
 //			parse_length(line, p);
-			parse_type(line, &str[line->pos]);
+			parse_type(line, str);
 			line->pos++;
 		}
 	}

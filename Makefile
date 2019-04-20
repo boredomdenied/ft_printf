@@ -6,7 +6,7 @@
 #    By: jrameau <jrameau@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/21 14:58:27 by jrameau           #+#    #+#              #
-#    Updated: 2019/04/14 13:03:05 by bchapman         ###   ########.fr        #
+#    Updated: 2019/04/20 11:11:24 by bchapman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ FILES		= ft_bzero.c \
 				parse_csp.c \
 				parse_dioux.c \
 				parse_float.c \
-				ft_isdigit.c
+				ft_isdigit.c \
+				pf_parse_int.c 
 
 OBJ=$(FILES:.c=.o)
 

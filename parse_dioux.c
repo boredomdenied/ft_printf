@@ -6,7 +6,7 @@
 /*   By: bchapman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 01:36:29 by bchapman          #+#    #+#             */
-/*   Updated: 2019/04/18 14:34:51 by bchapman         ###   ########.fr       */
+/*   Updated: 2019/04/18 16:15:11 by bchapman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		parse_int(t_line *line)
 {
-		line->length += ft_putstr(ft_itoa(va_arg(line->ap, int)), line);
+		line->length += pf_parse_int(ft_itoa(va_arg(line->ap, int)), line);
 }
 
 void		parse_oct(t_line *line)
@@ -39,14 +39,14 @@ void		parse_unsigned(t_line *line)
 
 void		parse_dioux(t_line *line, const char *p)
 {
-	if (*p == 'd' || *p == 'i')
+	if (p[line->pos] == 'd' || p[line->pos] == 'i')
 		parse_int(line);
-	else if (*p == 'o')
+	else if (p[line->pos] == 'o')
 		parse_oct(line);
-	else if (*p == 'u')
+	else if (p[line->pos] == 'u')
 		parse_unsigned(line);
-	else if (*p == 'x')
+	else if (p[line->pos] == 'x')
 		parse_hex(line, 1);
-	else if (*p == 'X')
+	else if (p[line->pos] == 'X')
 		parse_hex(line, 0);
 }
