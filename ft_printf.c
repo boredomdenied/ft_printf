@@ -6,7 +6,7 @@
 /*   By: bchapman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 14:06:56 by bchapman          #+#    #+#             */
-/*   Updated: 2019/04/20 13:19:54 by bchapman         ###   ########.fr       */
+/*   Updated: 2019/04/20 14:11:46 by bchapman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	parse_type(t_line *line, const char *p)
 	{
 		ft_putchar('%');
 		line->length++;
-	//	line->pos++;
 	}
 }
 
@@ -105,7 +104,8 @@ void	init_line(t_line *line)
 	line->width = 0;
 	line->length = 0;
 	line->width_digits = 0;
-	line->precision = 0;
+	line->precision = -1;
+	line->int_digits = 0;
 }
 
 int		ft_printf(const char *str, ...)

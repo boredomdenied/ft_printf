@@ -6,7 +6,7 @@
 /*   By: bchapman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 01:36:29 by bchapman          #+#    #+#             */
-/*   Updated: 2019/04/18 16:15:11 by bchapman         ###   ########.fr       */
+/*   Updated: 2019/04/20 13:56:32 by bchapman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void		parse_int(t_line *line)
 {
-		line->length += pf_parse_int(ft_itoa(va_arg(line->ap, int)), line);
+	line->int_digits = pf_parse_int(ft_itoa(va_arg(line->ap, int)), line);
+	line->length += line->int_digits;
 }
 
 void		parse_oct(t_line *line)
 {
-	line->length += ft_putstr(ft_itoa_base(va_arg(line->ap, int), 8), 0);
+	line->int_digits = ft_putstr(ft_itoa_base(va_arg(line->ap, int), 8), 0);
+	line->length += line->int_digits;
 }
 
 void		parse_hex(t_line *line, int i)

@@ -6,7 +6,7 @@
 /*   By: bchapman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 15:18:19 by bchapman          #+#    #+#             */
-/*   Updated: 2019/04/20 12:29:56 by bchapman         ###   ########.fr       */
+/*   Updated: 2019/04/20 13:56:21 by bchapman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct		s_line
 	int				width;
 	int				width_digits;
 	int				length;
+	int				int_digits;
 	int				precision;
 	int				precision_digits;
 
