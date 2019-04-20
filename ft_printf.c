@@ -6,7 +6,7 @@
 /*   By: bchapman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 14:06:56 by bchapman          #+#    #+#             */
-/*   Updated: 2019/04/20 12:32:16 by bchapman         ###   ########.fr       */
+/*   Updated: 2019/04/20 13:19:54 by bchapman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	parse_width(t_line *line, const char *p)
 	line->pos -= line->width_digits;
 	temp = ft_strsub(p, line->pos, line->width_digits);
 		line->width = ft_atoi(temp);
+		free(temp);
 	line->pos += line->width_digits;
 }
 
@@ -72,6 +73,7 @@ void	parse_precision(t_line *line, const char *p)
 	line->pos -= line->precision_digits;
 	temp = ft_strsub(p, line->pos, line->precision_digits);
 		line->precision = ft_atoi(temp);
+		free(temp);
 	line->pos += line->precision_digits;
 }
 
